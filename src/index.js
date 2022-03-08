@@ -12,11 +12,8 @@ import {
 
 ReactDOM.render(
   <Router>
-    <Navigation />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
+    <Navigation/>
+    <Home/>
     <Footer />
   </Router>,
 
