@@ -20,4 +20,11 @@ a:hover {
   color: rgba(0, 0, 0, 0.349);
 }
 
+.footer {
+  height: 2em;
+  margin-top: 1em;
+  text-align: center;
+  line-height: .5em;
+}
+
 

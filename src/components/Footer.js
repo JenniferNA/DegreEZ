@@ -5,9 +5,8 @@ function Footer() {
     <div className="footer">
       <footer class="py-5 bg-dark fixed-bottom">
         <div class="container">
-          <p class="m-0 text-center text-white">
-            Copyright &copy; Your Website 2020
-          </p>
+          <a href="/AdminPortal">Admin Portal</a>
+          <p class="footer"> Copyright &copy; DegreEZ 2022  </p>
         </div>
       </footer>
     </div>
