@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Grid from '@mui/material/Grid';
+import homebg from '../graphics/HomeBG.png';
 import { useParams, useNavigate } from "react-router";
 import TextField from '@mui/material/TextField';
 import Fab from '@mui/material/Fab';
@@ -17,42 +19,46 @@ export default function AdminPortal() {
       return { ...prev, ...value };
     });
   }
-  
+
   // This function will handle the submission.
   async function onSubmit(e) {
 
     e.preventDefault();
 
     const newURL = { ...form };
-    
-    await fetch("http://localhost:5000/url/add", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(newURL),
-   })
-   .catch(error => {
-     window.alert(error);
-     return;
-   });
 
-   window.alert("url submitted");
- 
-   setForm({ masterURL: "" });
+    await fetch("http://localhost:5000/url/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newURL),
+    })
+      .catch(error => {
+        window.alert(error);
+        return;
+      });
+
+    window.alert("url submitted");
+
+    setForm({ masterURL: "" });
   }
 
 
   return (
     <div className="adminportal">
+
+      <Grid component="div" backgroundImage={homebg} backgroundSize="cover" sx={{ bgcolor: '#cfe8fc', height: '50vh', width: '100vw', flexGrow: 1 }}>
+      </Grid>
+      <div class="box cen">
         <header>
           <h1>Admin Portal</h1>
           <p>Primary Administrator</p>
           <p>University: State University of New York at Albany</p>
         </header>
 
-      <form onSubmit={onSubmit}>
-        {/*
+        <form onSubmit={onSubmit}>
+          {/*
         <h2>Master Class Link</h2>
      
         <div>
@@ -64,20 +70,24 @@ export default function AdminPortal() {
             />
         </div>
         */}
-        <h2>Semester Schedule Link</h2>
-        <input
+
+          <h2>Semester Schedule Link</h2>
+          <input
             className="form-check-input"
             type="text"
             id="masterURL"
             value={form.masterURL}
             onChange={(e) => updateForm({ masterURL: e.target.value })}
           />
-        <input
-          type="submit"
-          value="Submit"
-        />
-      </form>
-
+          <input
+            type="submit"
+            value="Submit"
+          />
+        </form>
       </div>
+      <Grid component="div" backgroundImage={homebg} backgroundSize="cover" sx={{ bgcolor: '#cfe8fc', height: '50vh', width: '100vw', flexGrow: 1 }}>
+      </Grid>
+
+    </div>
   );
 }
