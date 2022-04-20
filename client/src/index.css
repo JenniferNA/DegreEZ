@@ -20,11 +20,6 @@ a:hover {
   color: rgba(0, 0, 0, 0.349);
 }
 
-.box { /* default div for content on website*/
-  padding: 2em;
-  background: white;
-  margin: 0 10%;
-}
 .cen{ /* centers content */
   text-align: center;
 }
@@ -36,4 +31,30 @@ a:hover {
   line-height: .5em;
 }
 
+.adminportal{
+  background: #f2f2f2;
+  margin: 0 auto;
+  padding: 2em;
+  padding-bottom: 21em;
+}
 
+.adminportal header{
+  line-height: 1em;
+}
+
+.adminportal input, button{
+  border-radius: .65em;
+  padding: .3em .8em;
+  border: outset 1px;
+  font-size: 1em;
+  margin: .2em .25em;
+}
+
+.adminportal input{
+  width: 50%;
+}
+
+.adminportal button{
+  color: whitesmoke;
+  background: #7f7f7f;
+}
