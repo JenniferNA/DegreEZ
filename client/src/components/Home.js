@@ -41,7 +41,7 @@ function Home() {
           <Grid item component="upload" justify="center"  alignItems="center">           
             <label htmlFor="contained-button-file">
             <Input accept=".pdf/*" id="contained-button-file" multiple type="file" />
-              <Button variant="contained" component="span">
+              <Button push variant="contained" component="span">
                 Upload Degree Audit
               </Button>
             </label>            
