@@ -19,7 +19,7 @@ function Navigation() {
       <AppBar position="sticky"color="transparent">
         <Toolbar>
           <Box component="div" sx={{ flexGrow: 1 }}>
-            <a href="/Home">
+            <a href="/">
               <img src={logo} alt="Logo" height="50" />
             </a>
           </Box>
