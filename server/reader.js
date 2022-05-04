@@ -7,6 +7,8 @@ major = "";
 minor = "";
 
 
+const required = [];
+
 const minor_reqs = [];//
 const math_min_categories = []
 
@@ -15,16 +17,30 @@ const major_reqs = [];//
 const gen_ed_reqs = [];//0 = math, 1 = writing, 2 = arts, 3 = humanities, 4 = nat sci, 5 = soc sci, 6 = hist, 7 = intern persp, 8 = for lang, 9 = chall 21
 const gen_ed_strings = ["MATHEMATICS AND STATISTICS","WRITING AND CRITICAL INQUIRY","Note: Courses cannot double count with Humanities","Note: Courses cannot double count with Arts", "NATURAL SCIENCES", "SOCIAL SCIENCES", "U.S. HISTORY","INTERNATIONAL PERSPECTIVES","FOREIGN LANGUAGE","CHALLENGES FOR THE 21ST CENTURY"];
 
-const comp_sci_categories = ['NOTE: A "C" or "S" or better grade required',"Social Aspects of Computing - select one course:","Computer Science Electives - select 9 credits:","Mathematics - select 17 credits:","Physics - select 4 courses:","Option"];
 
-new PdfReader().parseFileItems("jens_degree_audit.pdf", (err, item) => {
+
+const major_map = new Map();
+cat_map = new Map();
+//Each major must be added to the map
+var fs = require('fs'); 
+const { parse } = require('csv-parse');
+var parser = parse({relax_column_count: true, quote: '', ltrim: true, rtrim: true, delimiter: ',' },function (err, records) {
+  if (err) console.error("error:", err);
+  for (i = 0; i < records.length; i++) major_map.set(records[i][0],records[i].slice(1,records[i].length-1))
+});
+fs.createReadStream('major_info.csv').pipe(parser);
+
+
+
+new PdfReader().parseFileItems("quinten_audit.pdf", (err, item) => {
     if (err) console.error("error:", err);
     else if (!item) {
+      //Major information
         if (all.search('MAJOR:') != -1) {
-            major = all.slice(all.search('MAJOR:')+14,all.search("MAJOR:")+17);
+            major = all.slice(all.search('MAJOR:')+14,all.search("MAJOR:")+19).trim();
         }
         if (all.search('MINOR:') != -1) {
-            minor = all.slice(all.search('MINOR:')+14,all.search("MINOR:")+20);
+            minor = all.slice(all.search('MINOR:')+14,all.search("MINOR:")+22).trim();
         }
         //Populate gen_ed_reqs array with info
         for (let i = 0; i < gen_ed_strings.length; i++) {
@@ -33,16 +49,37 @@ new PdfReader().parseFileItems("jens_degree_audit.pdf", (err, item) => {
           else gen_ed_reqs[i] = 0;
         }
         //Populate major_reqs array with info
-        major_text = all.slice(all.search("CHECK RESIDENCE REQUIREMENT>>>>")+80,all.search("300-599 Advance Course Check"));
-        for (let i = 0; i < comp_sci_categories.length; i++) {
-          reqtext = major_text.slice(major_text.search(comp_sci_categories[i])-10,major_text.search(comp_sci_categories[i])+200);
-          if (!reqtext) console.log("not found");
+        major_text = all.slice(all.search("CHECK RESIDENCE REQUIREMENT>>>>")+80,all.search("ADVANCE COURSE CHECK IS COMPLETE"));
+        total = 0;
+        for (let i = 0; i < (major_map.get(major)).length; i++) {
+          reqtext = major_text.slice(major_text.search(major_map.get(major)[i])-10,major_text.search(major_map.get(major)[i])+200);
+          if (!reqtext) console.log("not found: "+major_map.get(major)[i]);
           if (reqtext.indexOf("+") != -1) major_reqs[i] = 1;
-          else gen_ed_reqs[i] = 0;
+          else if (reqtext.indexOf("+") == -1){
+            major_reqs[i] = 0;
+            const catrecords = [];
+            var cat_parser = parse({relax_column_count: true, quote: '', ltrim: true, rtrim: true, delimiter: ',' },function (err, records) {
+              if (err) console.error("error:", err);
+              for (let j = 0; j < major_reqs.length; j++) {
+                var a = records[j][1].split('+');
+                for (let k = 0; k < a.length; k++) {
+                  if(!(a[k] === '') && required.includes(a[k]) == false){
+                    required.push(a[k]);
+                  }
+                }
+              }
+              if (i=== (major_map.get(major)).length-1) console.log(required)
+              
+              else catrecords.push(records);
+            });
+            fs.createReadStream(major+'.csv').pipe(cat_parser);
+          }
         }
+        
 
         math_minor = all.slice(all.search("Mathematics Minor"))
         
+        console.log(required);
         console.log(major_reqs);
         console.log(gen_ed_reqs);
         console.log("Major: ",major);
