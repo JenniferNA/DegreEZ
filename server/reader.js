@@ -8,6 +8,7 @@ minor = "";
 
 
 const required = [];
+const taken = []
 
 const minor_reqs = [];//
 const math_min_categories = []
