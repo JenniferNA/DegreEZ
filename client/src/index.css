@@ -31,6 +31,17 @@ a:hover {
   line-height: .5em;
 }
 
+.row{
+  padding: .2em 0;
+}
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .adminportal{
   background: #f2f2f2;
   margin: 0 auto;
@@ -61,17 +72,70 @@ a:hover {
 
 .studentplan{
   background: #8cb3cd;
-  padding-bottom: 1em;
+  color:#515151;
 }
 
 #studentinfo{
   background: white;
+}
+#studentinfo h3{
   color: black;
 }
 
-.multisemplan{
+#studentinfo .row{
+  padding-left: 5vw;
+  padding-right: 5vw;
+
+}
+
+#studentinfo .row p {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+
+#studentinfo .row h3, a#edit {
+  float: left;
+}
+
+#studentinfo .row a#edit {
+  font-size: small;
+  margin-left: .5em;
+  margin-top: 2em;
+}
+
+.planlist{
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.schedule{
   background: white;
   border-radius: 2em;
   margin: 3vw;
-  padding: 5vw;
+  padding: .25vw 3vw 1vw;
+}
+
+.schedule ul{
+  list-style-type: none;
+}
+
+
+.schedule li{
+  margin: 1.5vw 0;
+}
+
+.schedule .row{
+  text-align: end;
+  color: inherit;
+}
+
+
+
+@media(max-width:600px){
+  #studentinfo .row p {
+    text-align: start;
+  }
 }
