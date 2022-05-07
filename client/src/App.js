@@ -16,6 +16,7 @@ import {
     Home,
     About,
     AdminPortal,
+    StudentPlan,
   } from "./components";
  
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/AdminPortal" element={<AdminPortal />} />
+        <Route path="/StudentPlan" element={<StudentPlan />} />
         </Routes>
         <Footer />
     </div>

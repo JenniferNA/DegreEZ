@@ -58,3 +58,20 @@ a:hover {
   color: whitesmoke;
   background: #7f7f7f;
 }
+
+.studentplan{
+  background: #8cb3cd;
+  padding-bottom: 1em;
+}
+
+#studentinfo{
+  background: white;
+  color: black;
+}
+
+.multisemplan{
+  background: white;
+  border-radius: 2em;
+  margin: 3vw;
+  padding: 5vw;
+}
