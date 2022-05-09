@@ -1,7 +1,6 @@
 
 const { PdfReader } = require("pdfreader");
 
-
 all = "";
 major = "";
 minor = "";
