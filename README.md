@@ -1,19 +1,13 @@
 # Notes from Jen
 
-Yo, so if you're seeing this then I've hopefully managed to get this on github
+## NEW RUN COMMAND
 
-To run this you're gonna need to open two terminal windows.
+The new run command is:
 
-Navigate to these two locations and run their respective commands:
+- Location DegreEZ (root folder)
+    ### `npm run dev`
 
-- Location DegreEZ/server
-    ### `node server.js`
-- Location DegreEZ/client
-    ### `npm start`   
-
-lemme know if you have any probs 
-
-Jen 04/10/22
+Jen 05/09/22
 
 # Getting Started with Create React App
 
