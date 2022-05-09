@@ -33,13 +33,14 @@ app.post('/upload', (req, res) => {
   }
 
   const file = req.files.file;
-  file.mv(`${__dirname}/server/uploads/${file.name}`, err => {
+  file.mv(`${__dirname}/server/uploads/Audit.pdf`, err => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
     }
-    res.json({ fileName: file.name, filePath: `/server/uploads/${file.name}` });
+    res.json({ fileName: file.name, filePath: `/server/uploads/Audit.pdf` });
   });
 });
+
 
 app.listen(5000, () => console.log('Server Started...'));
