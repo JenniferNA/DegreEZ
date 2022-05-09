@@ -1,0 +1,19 @@
+{
+  "name": "degreez",
+  "version": "1.0.0",
+  "description": "Yo, so if you're seeing this then I've hopefully managed to get this on github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JenniferNA/DegreEZ.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JenniferNA/DegreEZ/issues"
+  },
+  "homepage": "https://github.com/JenniferNA/DegreEZ#readme"
+}
