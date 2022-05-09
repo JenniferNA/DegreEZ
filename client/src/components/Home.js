@@ -31,20 +31,21 @@ function Home() {
     <div className="home">
       <Grid container>
         <Grid component="top">
-          <Box
+          <Stack 
             class="homebg"
+            justifyContent="center"
             style={{
             backgroundImage: `url(${homebg})`,
             backgroundSize: "cover",
             height: '50vh',
             width:'100vw'
             }}>
-              <Typography variant="h5" textAlign="center" color="white">Understanding your Degree</Typography>
-              <Typography variant="h2" textAlign="center" color="white">Made easier</Typography>
-              <Typography variant="h5" textAlign="center" color="white">
+              <Typography variant="h5" color="white" height='20%' display= "flex" justifyContent="center" alignItems="flex-end">Understanding your Degree</Typography>
+              <Typography variant="h2" textAlign="center" color="white" height='30%' display= "flex" justifyContent="center" alignItems="center">Made easier</Typography>
+              <Typography variant="h5" textAlign="center" color="white" height='30%' display= "flex" justifyContent="center" alignItems="flex-start">
                 DegreEZ is an online tool designed to empower students to take control of their academic career
               </Typography>
-          </Box>
+          </Stack>
         </Grid>          
         <Stack component="middle" justifyContent="center" alignItems="center" height='25vh' width='100vw'>
             <Typography variant="h5" height='10vh'> 
