@@ -5,6 +5,7 @@ import { Typography, Button, CssBaseline, Box, Grid, Paper, Avatar, Stack, Divid
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import processAudit from '../proccessAudit';
 import axios from 'axios';
 
 const Input = styled('input')({
@@ -19,14 +20,36 @@ function Home() {
     const file = e.target.files[0];
 
     const formData = new FormData();
-    formData.append('file', file);
-    
+    formData.append('pdfFile', file);
+    /*
     axios.post('/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
+
+    fetch('/extract-text', {
+      method: "post",
+      body: formData
+    }).then(response => {
+      return response.text();
+    }).then(extractedText => {
+      console.log(extractedText.trim());
+    });
+    */
+
+    let pdfText;
+    axios.post('/extract-text', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+    }}).then(response => {
+      pdfText = response.data;
+      processAudit(pdfText)
+    });
+    
+    
   }
+  
   
   return (
     <div className="home">

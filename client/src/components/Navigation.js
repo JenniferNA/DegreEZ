@@ -4,7 +4,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../graphics/DegreEZLogo.png';
 import { MenuList, Menu, MenuItem, Button, Box, Typography, AppBar, Toolbar } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 
 function Navigation() {
