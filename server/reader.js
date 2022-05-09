@@ -38,10 +38,10 @@ new PdfReader().parseFileItems("quinten_audit.pdf", (err, item) => {
     else if (!item) {
       //Major information
         if (all.search('MAJOR:') != -1) {
-            major = all.slice(all.search('MAJOR:')+14,all.search("MAJOR:")+19).trim();
+            major = all.slice(all.search('MAJOR:')+6,all.search("MAJORS:")-5).trim();
         }
         if (all.search('MINOR:') != -1) {
-            minor = all.slice(all.search('MINOR:')+14,all.search("MINOR:")+22).trim();
+            minor = all.slice(all.search('MINOR:')+6,all.search("MINORS:")-5).trim();
         }
         //Populate gen_ed_reqs array with info
         for (let i = 0; i < gen_ed_strings.length; i++) {
@@ -64,13 +64,17 @@ new PdfReader().parseFileItems("quinten_audit.pdf", (err, item) => {
               for (let j = 0; j < major_reqs.length; j++) {
                 var a = records[j][1].split('+');
                 for (let k = 0; k < a.length; k++) {
-                  if(!(a[k] === '') && required.includes(a[k]) == false){
+                  if(!(a[k] === '') && required.includes(a[k]) == false && all.slice(all.search("====  UALBANY ACADEMIC SUMMARY  ====")+80,all.indexOf("****  LEGEND  ****")).indexOf(a[k]) == -1) {
                     required.push(a[k]);
+                    console.log(a[k]);
                   }
                 }
               }
-              if (i=== (major_map.get(major)).length-1) console.log(required)
-              
+              if (i=== (major_map.get(major)).length-1) {
+                
+                console.log("remaining classes:");
+                console.log(required)
+              }
               else catrecords.push(records);
             });
             fs.createReadStream(major+'.csv').pipe(cat_parser);
