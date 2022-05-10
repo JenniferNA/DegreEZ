@@ -44,7 +44,7 @@ function Home() {
         'Content-Type': 'multipart/form-data'
     }}).then(response => {
       pdfText = response.data;
-      processAudit(pdfText)
+      processAudit(pdfText);
     });
     
     

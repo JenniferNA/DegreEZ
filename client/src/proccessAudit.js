@@ -1,8 +1,8 @@
 export default function processAudit(pdfText){
 
-    const major = /MAJOR:\s*(?:[^(ADDL)\w*])/;
+    const major = /MAJOR:\s*(?!ADDL)\w*/;
     const addlmajors = /ADDL\sMAJORS:\s*\w*\n/;
-    const minor = /MINOR:\s*(?:[^(ADDL)\w*])/;
+    const minor = /MINOR:\s*(?!ADDL)\w*/;
     const addlminors = /ADDL\sMINORS:\s*\w*\n/;
 
 
